@@ -3,26 +3,6 @@ import random
 
 colour = ["red", "yellow", "green", "blue", "black", "brown"]
 
-
-# def move_forward():
-#     tom.forward(10)
-#
-#
-# def move_backward():
-#     tom.back(10)
-#
-#
-# def move_left():
-#     tom.left(10)
-#
-#
-# def move_right():
-#     tom.right(10)
-#
-#
-# def clear():
-#     tom.reset()
-#
 screen = Screen()
 is_race_on = False
 # screen.listen()
@@ -34,6 +14,9 @@ is_race_on = False
 screen.setup(width=500, height=400)
 user = screen.textinput(title="Make your bet", prompt="Which turtle will win the race? Enter a colour?: ")
 all_turtles = []
+
+############################ formed different colors of turtle and appended in the list (all_turtles) ################
+
 for color in colour:
     new_turtle = Turtle(shape="turtle")
     new_turtle.color(color)
@@ -42,16 +25,19 @@ for color in colour:
     all_turtles.append(new_turtle)
 if user:
     is_race_on = True
+
+###################### Random generated steps of each turtle to make the game unpredictable #######################
+
 while is_race_on:
-    for object in all_turtles:
-        if object.xcor() > 230:
+    for each_turtle in all_turtles:
+        if each_turtle.xcor() > 230:
             is_race_on = False
-            winner = object.pencolor()
+            winner = each_turtle.pencolor()
             if user == winner:
                 print(f"You win! The {winner} turtle wins.")
             else:
                 print(f"You lose! The {winner} turtle wins.")
-        object.forward(random.randint(0,10))
+        each_turtle.forward(random.randint(0, 10))
 
 screen.exitonclick()
 
